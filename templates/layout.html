@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+     <link rel="stylesheet" href="{{url_for ('static',filename='css/styles.css')}}"/>
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand|Handjet|IBM Plex Sans|Oswald|Open Sans">
+  </head>
+
+  <body>
+     <nav>
+        <div class="title_ct">
+          <img src="{{url_for ('static',filename='assets/img/up.png')}}"/>
+          <h1>CODELINGUS</h1>
+        </div>
+        <div class="search_ct">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtsLJlHAtkmhnk2DNBj3L_ZQEOnLaQJWAb2A&s"/>
+          Search...
+          <hr>
+        </div>
+        <div class="buttons_ct">
+          <a href="#"id="home">HOME</a>
+          <a href="#"id="aur">AUR</a>
+          <a href="#"id="sunao">SUNAO</a>
+        </div>
+     </nav>
+     <div class="line">
+       <div class="text">
+      01001001 00100000 01101100 01101111 01110110 01100101 00100000 01100011 01101111 01100100 01101001 01101110 01100111
+    </div>
+     </div>
+     {% block body %}{% endblock %}
+
+    <div id="scroll">
+      <button id="prevBtn" class="scroll-btn">
+        <img src="{{url_for ('static',filename='assets/img/previous.png')}}">
+      </button>
+      <div class="scroll_container">
+        {% for post in posts %}
+         {% set num=loop.index %}
+         {% if (num>limit)and(current_post!=post.title) %}
+          <a href="/post/{{post.slug}}" class="box">
+            <div class="img_box">
+              {% set fname="assets/img/"+post.img_file %}
+          <img src="{{ url_for('static',filename=fname)}}">
+            </div>
+            <div class="text-overlay">{{post.title}}</div>
+          </a>
+         {% endif %}
+        {% endfor %}
+      </div>
+      <button id="nextBtn" class="scroll-btn">
+        <img src="{{url_for ('static',filename='assets/img/next.png')}}">
+      </button>
+    </div>
+
+    <div id="footer">Footer</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Slick JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.scroll_container').slick({
+        autoplay: true,
+        autoplaySpeed: 1500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: false,
+        
+        infinite: true, // Enable infinite looping
+        dots: false, // Hide dots navigation
+    });
+
+    $('#prevBtn').click(function(){
+      $('.scroll_container').slick('slickPause'); 
+      $('.scroll_container').slick('slickPrev');
+  });
+
+  $('#nextBtn').click(function(){
+    $('.scroll_container').slick('slickPause'); 
+    $('.scroll_container').slick('slickNext');
+  });
+});
+
+</script>
+</body>
+</html>

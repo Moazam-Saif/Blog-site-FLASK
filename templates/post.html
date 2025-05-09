@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+     <div class="post-container">
+       <main> 
+        <div class="post_head">
+          <div class="head_img_box">
+           {% set fname="assets/img/"+post.img_file %}
+          <img src="{{ url_for('static',filename=fname)}}">
+          </div>
+          <h1>{{post.title}}</h1>
+        </div>
+        <div class="dates"><span class="posting-date">Posted: {{(post.date).strftime("%d-%m-%Y")}}</span> <span class="editing-date">{% if post.edited %} Updated: {{(post.edited).strftime("%d-%m-%Y")}} {% endif %}</span></div>
+        <div class="post_content">{{ post.content|safe }}</div> 
+       </main>
+       <div id="bar1">1</div>
+       <div id="bar2">2</div>
+     </div>
+     {% set current_post=post.title %}
+{% endblock %}

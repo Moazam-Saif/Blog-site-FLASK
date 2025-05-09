@@ -1,0 +1,72 @@
+{% extends "dash_layout.html" %}
+{% block body %}
+        <div id="listContainer">
+       <div class="search-head">Search by:</div>
+        <!-- Search and Sort Controls -->
+          <div class="search-wrapper">
+            <div class="search-category">
+                <input class="search title-search" placeholder="Title" />
+            </div>
+            <div class="search-category">
+                <input class="search author-search" placeholder="Author" />
+            </div>
+            <div class="search-category">
+                <input class="search uDate-search" placeholder="Date Posted" />
+            </div>
+            <div class="search-category">
+                <input class="search eDate-search" placeholder="Date Edited" />
+            </div>
+            
+        </div>
+    <div class="sort-container">
+      <select id="sortDropdown" onchange="sortList()">
+        <option value="">Sort by...</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="new-to-old">New to Old</option>
+        <option value="old-to-new">Old to New</option>
+        <option value="edited-new-to-old">Edited: New to Old</option>
+        <option value="edited-old-to-new">Edited: Old to New</option>
+      </select>
+    </div>
+
+      <ul id="Posts" class="list">
+    {% for post in posts %}
+    <li class="list-item">
+        <a class="search-result" href="/post/{{post.slug}}" target="_blank">
+            <div class="image-section">
+                {% set fname="assets/img/"+post.img_file %}
+          <img src="{{ url_for('static',filename=fname)}}">
+            </div>
+            <div class="text-section">
+                <span class="title">
+                    {{post.title}}
+                </span>
+                <span class="search-text">
+                    {{post.content|safe}}
+                </span>
+            </div>
+        </a>
+        <div class="infos">
+            <div class="info-uDate">
+                <span class="posted">Posted: </span><span class="uDate">{{post.date}}</span>
+            </div>
+            <div class="info-eDate">
+                {% if post.edited %}
+                <span class="edited">Edited: </span><span class="eDate">{{post.edited}}</span>
+                {% endif %}
+            </div>
+            <div class="info-author">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnGWEwXpRS7z7rVaGrjIWWTdE8_TiYTGiYjA&s">
+                <span class="author">{{post.author}}</span>
+            </div>
+        </div>
+        <div class="edit-button"><a href="/edit/{{post.slug}}"><span class="edit-text">Edit Post</span> <img src="{{url_for('static', filename='assets/img/edit.png')}}"></a> </div>
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+
+    </div>  
+      </main>
+{% endblock %}

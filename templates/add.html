@@ -1,0 +1,73 @@
+{% extends "dash_layout.html" %}
+{% block body %}
+<form method="POST" action="/add_post" enctype="multipart/form-data">
+    <div class="post_head">
+        <div class="head_img_box">
+            <img src="" alt="Background Image">
+        </div>
+        <h1>
+            <textarea id="titlee" name="title" rows="1" placeholder="Title" wrap="soft" required></textarea>
+        </h1>
+    </div>
+    <div class="post_content">
+        <!-- Quill Editor Container -->
+        <div id="editor"></div>
+    </div>
+
+    <!-- Hidden input to store Quill editor content -->
+
+    <input type="hidden" id="quill_html_content" name="content">
+    <div class="edit-buttons-container">
+        <div class="container_mini" id="submitContainer">
+            <button class="inner-button">
+                {% set fname="assets/img/"+parameters['save_img'] %}
+                <img src="{{ url_for('static',filename=fname)}}" class="left_img" alt="Left Icon" />
+                <span class="button-text">Save</span>
+            </button>
+            {% set fname="assets/img/"+parameters['right_img'] %}
+            <img src="{{ url_for('static',filename=fname)}}" class="right_img" alt="Right Icon" />
+        </div>
+        <div class="container_mini" id="deleteContainer">
+            <button class="inner-button">
+                {% set fname="assets/img/"+parameters['delete_img'] %}
+                <img src="{{ url_for('static',filename=fname)}}" class="left_img" alt="Left Icon" />
+                <span class="button-text">Delete</span>
+            </button>
+            {% set fname="assets/img/"+parameters['left_img'] %}
+            <img src="{{ url_for('static',filename=fname)}}" class="right_img" alt="Right Icon" />
+        </div>
+    </div>
+</form>
+
+<!-- Quill Editor Initialization -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Quill Editor Initialization
+        const toolbar_options = [
+            [{ header: [1, 2, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'indent': '-1' }, { 'indent': '+1' }],
+            [{ 'align': [] }],
+            ['image', 'code-block', 'link']
+        ];
+
+        const quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbar_options
+            },
+            placeholder: 'Write your Blog...',
+            theme: 'snow'
+        });
+
+        // Store Quill content in the hidden input field on form submission
+        const form = document.querySelector('form[action="/add_post"]');
+        if (form) {
+            form.onsubmit = function () {
+                const htmlContent = quill.root.innerHTML;
+                document.getElementById('quill_html_content').value = htmlContent;
+            };
+        }
+    });
+</script>
+{% endblock %}

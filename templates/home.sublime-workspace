@@ -1,0 +1,381 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ovr",
+				"overflow-x"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"co",
+				"container2"
+			],
+			[
+				"ma",
+				"margin-left"
+			],
+			[
+				"b",
+				"inline-block"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"left",
+				"margin-left"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"backgrou",
+				"background-image"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"tr",
+				"transition"
+			],
+			[
+				"ligh",
+				"lightgray"
+			],
+			[
+				"tra",
+				"transition"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"con",
+				"container3"
+			],
+			[
+				"g",
+				"gray"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"cont",
+				"container3"
+			],
+			[
+				"contain",
+				"container2"
+			],
+			[
+				"trasn",
+				"transition-delay"
+			],
+			[
+				"t",
+				"transition"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"for",
+				"form"
+			],
+			[
+				"re",
+				"red"
+			],
+			[
+				"c",
+				"container_mini"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"borde",
+				"border-radius"
+			],
+			[
+				"im",
+				"img_file"
+			],
+			[
+				"form",
+				"formaction"
+			],
+			[
+				"fil",
+				"img_file"
+			],
+			[
+				"bord",
+				"border-radius"
+			],
+			[
+				"s",
+				"space-evenly"
+			],
+			[
+				"m",
+				"margin-top"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"p",
+				"post-subtitle"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"margi",
+				"margin-right"
+			],
+			[
+				"txt",
+				"text-decoration-color"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"hea",
+				"header"
+			],
+			[
+				"sub",
+				"submit"
+			],
+			[
+				"over",
+				"overflow-y"
+			],
+			[
+				"align",
+				"align-self"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"fnot",
+				"font-family"
+			],
+			[
+				"htm",
+				"html"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ht",
+				"Set Syntax: HTML (Tcl)"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/OOP LAB/Flask_Testing/Templates/new layout design.html",
+		"/D/OOP LAB/Flask_Testing/Templates/dashboard.html",
+		"/D/OOP LAB/Flask_Testing/Templates/savebutton.html",
+		"/D/OOP LAB/Flask_Testing/Templates/edit.html",
+		"/D/OOP LAB/Flask_Testing/Templates/dash_layout.html",
+		"/D/OOP LAB/Flask_Testing/Templates/hmmmm.html",
+		"/D/OOP LAB/Flask_Testing/Templates/login.html",
+		"/D/OOP LAB/Flask_Testing/Templates/contact.html",
+		"/D/OOP LAB/Flask_Testing/Templates/post.html",
+		"/D/OOP LAB/Flask_Testing/Templates/index.html",
+		"/D/OOP LAB/Flask_Testing/Templates/layout.html",
+		"/D/OOP LAB/BLOG/templates/home.html",
+		"/D/OOP LAB/Flask_Testing/Templates/extra.html",
+		"/D/OOP LAB/Flask_Testing/Templates/bootstrap.html",
+		"/D/OOP LAB/Flask_Testing/Templates/new.html"
+	],
+	"find":
+	{
+		"height": 27.2
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.2
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "home.sublime-project",
+	"replace":
+	{
+		"height": 50.4
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

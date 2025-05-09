@@ -1,0 +1,16 @@
+{
+  "params": {
+    "local_server": "True",
+    "local_uri": "mysql://root:Blog%40123@localhost/website",
+    "prod_uri": "mysql://root:@localhost/website",
+    "user": "Moazam Saif",
+    "pass": "123",
+    "limit_for_home": 5,
+    "limit_for_post": 0,
+    "save_img": "save.png",
+    "delete_img": "delete.png",
+    "left_img": "left.png",
+    "right_img": "right.png",
+    "uploader_path": "D:\\BLOG\\Static\\assets\\img"
+  }
+}

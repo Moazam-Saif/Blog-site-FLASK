@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{url_for ('static',filename='css/styles.css')}}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Browser</title>
+</head>
+
+<body>
+  <div class="login-body">
+  <div class="login-container">
+          <h2>Admin Login</h2>
+          <form action="#" method="post">
+            <input type="text" id="username" name="username"
+            required placeholder="Username"/>
+            <div class="input-container">
+             <i class="fa fa-eye"></i>
+             <input type="password" id="password"name="password" required placeholder="Password"/>
+            </div>
+            <button type="submit">Login</button>
+          </form>
+          
+        </div>
+        
+      </div>
+    </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const eyeIcon = document.querySelector('.input-container .fa-eye');
+  const passwordInput = document.querySelector('#password');
+
+  eyeIcon.addEventListener('click', () => {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      eyeIcon.classList.remove('fa-eye');
+      eyeIcon.classList.add('fa-eye-slash');
+    } else {
+      passwordInput.type = 'password';
+      eyeIcon.classList.remove('fa-eye-slash');
+      eyeIcon.classList.add('fa-eye');
+    }
+  });
+});
+
+  </script>
+</body>
+
+</html>

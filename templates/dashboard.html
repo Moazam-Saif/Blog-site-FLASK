@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand|Handjet|IBM Plex Sans|Oswald|Open Sans">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+      body {
+        font-family: "Open Sans";
+        box-sizing: border-box;
+        background-color: whitesmoke;
+      }
+      #tabal {
+        border-collapse: collapse;
+       
+        
+        overflow: hidden;
+        margin-left: 10px;
+        margin-bottom: 30px;
+        border-radius: 0px;
+        background-color: transparent;
+        border-radius: 5px;
+
+      }
+      #tabal th {
+        background-color: #bfe0ce !important;
+        font-size: 1.2rem;
+        color: black;
+        font-weight: 500;
+      }
+      #tabal th, td {
+        width: 16%;
+        max-width: 16%;
+        text-align: left;
+        padding: 5px;
+        box-sizing: border-box;
+        word-wrap: break-word;
+      }
+      #tabal td {
+        font-size: 1rem;
+      }
+      #tabal th:last-child, td:last-child {
+        border-right: none; /* Remove the right border from the last column */
+      }
+      .search-by {
+        width: 100%;
+        height: 20vh;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 5vh;
+        position: relative;
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+      .search-options {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 0px 8px 0px 8px;
+      }
+      .search-options input {
+        outline: none;
+        border-top: 2px solid #bfe0ce;    /* Top border */
+        border-bottom: 2px solid #bfe0ce; /* Bottom border */
+        border-left: none;              /* No left border */
+        border-right: none;
+        font-size: 1.05rem;
+        width: 30%;
+        text-align: center;
+        height: 5vh;
+        background-color: transparent;
+      }
+        /* Custom Pagination Styling */
+          .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.5em 1em;
+        margin: 0 2px;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        color: #333;
+        border: 1px solid #ddd;
+      }
+      .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background-color: #e0e0e0;
+        color: #000;
+      }
+      .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background-color: #007bff;
+        color: white !important;
+        border: 1px solid #007bff;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="title_ct">
+        <img src="{{url_for('static', filename='assets/img/up.png')}}" />
+        <h1>CODELINGUS</h1>
+      </div>
+      <div class="search_ct">
+        DASHBOARD
+        <hr>
+      </div>
+      <div class="buttons_ct">
+        <a href="#" id="home">HOME</a>
+        <a href="#" id="aur">AUTHORS</a>
+        <a href="#" id="sunao">LOGOUT</a>
+      </div>
+    </nav>
+    <div class="line">
+      <div class="text">
+        01001001 00100000 01101100 01101111 01110110 01100101 00100000 01100011 01101111 01100100 01101001 01101110 01100111
+      </div>
+    </div>
+    <div class="post-container">
+      <main>
+        <div id="table-search">
+          <div class="search-by">
+            Search by:
+            <div class="search-options">
+              <input class="search" type="text" id="searchTitle" placeholder="Title" />
+              <input class="search" type="date" id="searchDate" placeholder="Date Posted" />
+              <input class="search" type="date" id="searchEditDate" placeholder="Date Edited" />
+            </div>
+          </div>
+          <table id="tabal">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Title</th>
+                <th>Posted</th>
+                <th>Edited</th>
+                <th>View</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for post in posts %}
+              <tr>
+                <td class="no">{{post.Sr}}</td>
+                <td class="title">{{post.title}}</td>
+                <td class="date">{{(post.date).strftime('%d-%m-%Y')}}</td>
+                <td class="edit-date">{{(post.date).strftime('%d-%m-%Y')}}</td>
+                <td>
+                  <a href="/post/" class="button" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/img/view.png') }}" />
+                  </a>
+                </td>
+                <td>
+                  <a href="/dashboard/edit/" class="button">
+                    <img src="{{ url_for('static', filename='assets/img/edit.png') }}" />
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </main>
+      <div id="bar1">1</div>
+      <div id="bar2">2</div>
+    </div>
+    <div id="footer">Footer</div>
+
+    <!-- jQuery (necessary for DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- Flatpickr JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Initialize flatpickr
+        flatpickr("#searchDate", {});
+        flatpickr("#searchEditDate", {});
+
+        // Initialize DataTables
+         var table = $('#tabal').DataTable({
+      "dom": 'tip', // Hide default search bar
+      "columnDefs": [
+        { "orderable": false, "targets": [4, 5] } // Disable sorting for the last two columns (View, Edit)
+      ],
+      "order": [[2, 'desc']] // Sort by the "Posted on" date column in descending order
+    });
+
+        // Apply column-specific filtering
+        $('#searchTitle').on('keyup', function () {
+          table.column(1).search(this.value).draw();
+        });
+
+        $('#searchDate').on('change', function () {
+          table.column(2).search(this.value).draw();
+        });
+
+        $('#searchEditDate').on('change', function () {
+          table.column(3).search(this.value).draw();
+        });
+      });
+    </script>
+  </body>
+</html>

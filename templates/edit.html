@@ -1,0 +1,80 @@
+{% extends "dash_layout.html" %}
+{% block body %}
+<div class="post_head">
+  <div class="head_img_box">
+        <div class="img_cont" id="imageContainer">
+          <form action="/edit/{{post.slug}}" method="post" enctype="multipart/form-data">
+            {% set fname="assets/img/"+post.img_file %}
+          <img src="{{ url_for('static',filename=fname)}}" alt="Upload" id="previewImage">
+          <input type="file" name="img_file" id="img_file" accept="image/*">
+          <label for="img_file" class="custom-button">
+            <i class="fa fa-plus-square" style="color:rgba(211,211,211,0.7);"></i>
+          </label>
+        </div>
+  </div>
+        <h1>
+          <textarea id="titlee" name="title" rows="2" placeholder="Title" wrap="soft">{{ post.title }}</textarea>
+        </h1>
+</div>
+<div class="post_content">
+    <!-- Quill Editor Container -->
+    <div id="editor"></div>
+    <input type="hidden" name="quill_html_content" id="quill_html_content">
+</div>
+<div class="edit-buttons-container">
+    <div class="container_mini" id="submitContainer">
+        <button type="submit" class="inner-button">
+            {% set fname="assets/img/"+parameters['save_img'] %}
+            <img src="{{ url_for('static',filename=fname)}}" class="left_img" alt="Left Icon"/>
+            <span class="button-text">Save</span>
+        </button>
+        {% set fname="assets/img/"+parameters['right_img'] %}
+        <img src="{{ url_for('static',filename=fname)}}" class="right_img" alt="Right Icon"/>
+    </div>
+    <div class="container_mini" id="deleteContainer">
+        <button type="button" class="inner-button">
+            {% set fname="assets/img/"+parameters['delete_img'] %}
+            <img src="{{ url_for('static',filename=fname)}}" class="left_img" alt="Left Icon"/>
+            <span class="button-text">Delete</span>
+        </button>
+        {% set fname="assets/img/"+parameters['left_img'] %}
+        <img src="{{ url_for('static',filename=fname)}}" class="right_img" alt="Right Icon"/>
+    </div>
+</div>
+</form>
+
+<!-- Quill Editor Initialization -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Quill Editor Initialization
+        const toolbar_options = [
+            [{ header: [1, 2, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'indent': '-1' }, { 'indent': '+1' }],
+            [{ 'align': [] }],
+            ['image', 'code-block', 'link']
+        ];
+
+        const quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbar_options
+            },
+            placeholder: 'Edit your Blog...',
+            theme: 'snow'
+        });
+
+        // Populate Quill editor with existing content
+        quill.root.innerHTML = {{ post.content|tojson|safe }};
+
+        // Store Quill content in the hidden input field on form submission
+        const form = document.querySelector('form[action="/edit/{{ post.slug }}"]');
+        if (form) {
+            form.onsubmit = function () {
+                const htmlContent = quill.root.innerHTML;
+                document.getElementById('quill_html_content').value = htmlContent;
+            };
+        }
+    });
+</script>
+{% endblock %}

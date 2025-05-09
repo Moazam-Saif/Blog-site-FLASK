@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand|Handjet|IBM Plex Sans|Oswald|Open Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js">
+  </head>
+  <body>
+    <nav>
+      <div class="title_ct">
+        <img src="{{url_for('static', filename='assets/img/up.png')}}" />
+        <h1>CODELINGUS</h1>
+      </div>
+      <div class="search_ct">
+        DASHBOARD
+        <hr>
+      </div>
+      <div class="buttons_ct">
+        <a href="/admin-dashboard-logged-in" id="home">HOME</a>
+        <a href="#" id="aur">AUTHORS</a>
+        <a href="#" id="sunao">LOGOUT</a>
+      </div>
+    </nav>
+    <div class="line">
+      <div class="text">
+        01001001 00100000 01101100 01101111 01110110 01100101 00100000 01100011 01101111 01100100 01101001 01101110 01100111
+      </div>
+    </div>
+    <div class="post-container">
+      <main>
+        {% block body %}{% endblock %}
+      </main>
+      <div id="bar1">
+        <a href="/add_post" target="_blank" class="add-button"><span>Add Post</span></a>
+      </div>
+      <div id="bar2">2</div>
+    </div>
+    <div id="footer">Footer</div>
+
+   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+
+const PreviewContainer = document.getElementById('imageContainer');
+const PreviewImage = PreviewContainer.querySelector('#previewImage');
+const fileInput = document.getElementById('img_file');
+const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+
+
+fileInput.addEventListener("change", function () {
+  const file = this.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+      PreviewImage.setAttribute('src', this.result);
+
+    });
+    if (file && !allowedTypes.includes(file.type)) {
+    PreviewImage.style.display = null; // Hide image preview for invalid file type
+    alert('Invalid file type! Please upload an image file (JPEG, JPG, PNG, GIF).');
+  }
+
+    reader.readAsDataURL(file);
+  } 
+   else {
+    PreviewImage.style.display = null; // In case no file is selected
+  }
+});
+
+
+
+// List.js Initialization
+var options = {
+  valueNames: ['title', 'uDate', 'eDate', 'author']
+};
+
+var postList = new List('listContainer', options);
+
+// Default sort: New to Old
+postList.sort('uDate', { order: "desc" });
+
+
+// Search by individual categories
+document.querySelector('.title-search').addEventListener('input', function () {
+  postList.filter(function (item) {
+    return item.values().title.toLowerCase().includes(this.value.toLowerCase());
+  }.bind(this));
+});
+
+document.querySelector('.author-search').addEventListener('input', function () {
+  postList.filter(function (item) {
+    return item.values().author.toLowerCase().includes(this.value.toLowerCase());
+  }.bind(this));
+});
+
+document.querySelector('.uDate-search').addEventListener('input', function () {
+  postList.filter(function (item) {
+    return item.values().uDate.includes(this.value);
+  }.bind(this));
+});
+
+document.querySelector('.eDate-search').addEventListener('input', function () {
+  postList.filter(function (item) {
+    return item.values().eDate.includes(this.value);
+  }.bind(this));
+});
+
+// Clear filters when input is empty
+document.querySelectorAll('.search').forEach(function (input) {
+  input.addEventListener('input', function () {
+    if (this.value === "") {
+      postList.filter();
+    }
+  });
+});
+
+// Sort function for the dropdown
+function sortList() {
+  var sortBy = document.getElementById("sortDropdown").value;
+  if (sortBy === 'new-to-old') {
+    postList.sort('uDate', { order: "desc" });
+  } else if (sortBy === 'old-to-new') {
+    postList.sort('uDate', { order: "asc" });
+  } else if (sortBy === 'edited-new-to-old') {
+    postList.sort('eDate', { order: "desc" });
+  } else if (sortBy === 'edited-old-to-new') {
+    postList.sort('eDate', { order: "asc" });
+  } else {
+    postList.sort(sortBy, { order: "asc" });
+  }
+}
+
+
+// Expanding Input Field Functionality
+
+  var titleTextarea = document.getElementById('titlee'); // Ensure ID matches your HTML
+
+  function adjustHeight(textarea) {
+    textarea.style.height = 'auto'; // Reset height to recalculate
+    textarea.style.height = (textarea.scrollHeight) + 'px'; // Adjust height based on content
+  }
+
+  // Adjust height on input
+  titleTextarea.addEventListener('input', function() {
+    adjustHeight(this);
+  });
+
+  // Trigger initial adjustment on page load
+  adjustHeight(titleTextarea);
+
+   // Submit container button functionality
+    const submitContainer = document.getElementById('submitContainer');
+    if (submitContainer) {
+        submitContainer.addEventListener('mousedown', () => {
+            submitContainer.classList.add('pressed');
+        });
+
+        submitContainer.addEventListener('mouseup', () => {
+            setTimeout(() => {
+                submitContainer.classList.remove('pressed');
+            }, 500); // Time in milliseconds to keep the effect after release
+        });
+
+        submitContainer.addEventListener('click', () => {
+            isDirty=false;
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{% if post %}/edit/{{ post.slug }}{% else %}#{% endif %}';
+            form.enctype = "multipart/form-data";
+            document.body.appendChild(form);
+            form.submit();
+        });
+    }
+
+    // Delete container button functionality
+    const deleteContainer = document.getElementById('deleteContainer');
+    if (deleteContainer) {
+        deleteContainer.addEventListener('mousedown', () => {
+            deleteContainer.classList.add('pressed');
+        });
+
+        deleteContainer.addEventListener('mouseup', () => {
+            setTimeout(() => {
+                deleteContainer.classList.remove('pressed');
+            }, 500); // Time in milliseconds to keep the effect after release
+        });
+
+        deleteContainer.addEventListener('click', () => {
+            if (confirm('Are you sure you want to delete this post?')) {
+                window.location.href = '{% if post %}/delete/{{ post.slug }}{% else %}#{% endif %}';
+            } 
+        });
+    }
+});
+</script>
+
+   </body>
+</html>
